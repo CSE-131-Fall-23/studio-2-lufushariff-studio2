@@ -14,54 +14,55 @@ public class Ruin
 		int winLimit = in.nextInt();
 		int totalSimulations = in.nextInt();
 		int plays = 0;
-	
+		int day = 1;
+		double ruins = 0;
 		
 		
 		for (int i = totalSimulations ; i > 0 ; i-- )
 		{
 			int tempStartAmount = startAmount;
-		
-			boolean result = false;
-			int day = 1;
-		
-			
+				
 			while (tempStartAmount > 0 && tempStartAmount < winLimit)
 			{
 				int game = (int) (Math.random() * 100) + 1;
-				plays = 0;
 				
 				if (game <= winChance * 100)
 				{
-					startAmount++;
+					tempStartAmount++;
 				} else
 				{
-					startAmount--;
+					tempStartAmount--;
 				}
 					
 				plays++;
 				
 				
-			}
+			}		
 			
 			
 			
-			tempStartAmount = startAmount;
-			System.out.println("Simulation day: " + day );
-			System.out.println("Plays: " + plays );
+			System.out.println("Simulation: " + day + " " + plays);
+
 			
 			if (tempStartAmount == 0)
 			{
 				System.out.println("ruin");
+				ruins++;
 
 			} else
 			{
 				System.out.println("success");
 			}
 			
+			System.out.println();
+			
 			day++;
+			plays = 0;
+			tempStartAmount = startAmount;
 		}
 
-		
+		System.out.println(ruins + " " + totalSimulations);
+		System.out.println(ruins/totalSimulations);
 
 	}
 
